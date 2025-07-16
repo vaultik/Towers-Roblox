@@ -1,11 +1,8 @@
-local Players = game:GetService("Players")
-local GetPlayerGui = require(script.GetPlayerGUI)
-local Simulation = require(script.Simulation)
+local Players = game:GetService("Players") -- getting the player service
+local LeaderstatsModule = require(script.Leaderstats) -- getting the leaderstats script for efficiency and neatness :)
 
-local TowersGui
-local Layers
-
-Players.PlayerAdded:Connect(function(player)
-    TowersGui = GetPlayerGui.run(player)
-    Layers = GetPlayerGui.GetLayers(TowersGui)
+Players.PlayerAdded:Connect(function(player) -- when the player joins
+    print("Player joined " .. player.Name)
+    local leaderstats = LeaderstatsModule.SetupLeaderboard(player) -- creating the leaderstats
+    LeaderstatsModule.CreateStat(leaderstats, "R$", 250) -- creating the money stat
 end)
