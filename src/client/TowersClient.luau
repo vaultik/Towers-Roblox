@@ -9,7 +9,9 @@ module.GetTowersGUI = function(player)
         Layer4 = player.PlayerGui.TowersGui.Layer4,
         Layer5 = player.PlayerGui.TowersGui.Layer5
     }
-    return Layers
+    local bet = tonumber(player.PlayerGui.TowersGui.BetBox.Text)
+    local playButton = player.PlayerGui.TowersGui.PlayButton
+    return Layers, bet, playButton
 end
 
 -- determining if it's a bomb or not
@@ -30,6 +32,17 @@ module.EnableLayer = function(layerChildren)
     for _, button in ipairs(layerChildren) do
         button.Interactable = true
     end
+end
+
+-- reset all layers
+module.ResetLayers = function(layers)
+    for index, layer in pairs(layers) do
+        for index, button in ipairs(layer:GetChildren()) do
+            button.Text = ""
+        end
+    end
+    print("Reset layers")
+    
 end
 
 return module
